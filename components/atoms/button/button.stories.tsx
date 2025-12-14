@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./button";
-import { Mail, ArrowRight, Trash2, AlertTriangle, Save } from "lucide-react";
+import { Mail, ArrowRight, Trash2, AlertTriangle, Save, InfoIcon } from "lucide-react";
 
 const meta: Meta<typeof Button> = {
     title: "Components/UI/Button",
@@ -88,6 +88,14 @@ export const Warning: Story = {
         children: "Proceed with Caution",
         variant: "warning",
         leftIcon: <AlertTriangle className="h-4 w-4" />,
+    },
+};
+
+export const Success: Story = {
+    args: {
+        children: "Operation Successful",
+        variant: "success",
+        leftIcon: <InfoIcon className="h-4 w-4" />,
     },
 };
 
