@@ -1,6 +1,6 @@
 import React from "react";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
-import { cn } from "../../../lib/utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
@@ -51,7 +51,7 @@ const BreadcrumbLink = React.forwardRef<
     <Comp
       ref={ref as any}
       className={cn(
-        "transition-colors hover:text-foreground",
+        "transition-colors hover:text-foreground font-medium",
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("font-normal text-foreground", className)}
+    className={cn("font-medium text-foreground", className)}
     {...props}
   />
 ));

@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from "./drawer";
 import { Settings, Share2, ShoppingCart, Bell, User } from "lucide-react";
-import { cn } from "../../../lib/utils/cn";
+import { cn } from "@/lib/utils/cn";
 import { Button } from "../button/button";
 
 const meta: Meta<typeof Drawer> = {
