@@ -34,7 +34,8 @@ export function MenuItem({
 }: MenuItemProps) {
     const [isExpanded, setIsExpanded] = useState(expanded);
     const [showFlyout, setShowFlyout] = useState(false);
-    const [flyoutPosition, setFlyoutPosition] = useState({ top: 0 });
+    const [flyoutPosition, setFlyoutPosition] = useState({ top: 0, left: 0 });
+    const [flyoutAlign, setFlyoutAlign] = useState<'top' | 'bottom'>('top');
     const [isHovered, setIsHovered] = useState(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -45,7 +46,18 @@ export function MenuItem({
         if (children && collapsed) {
             if (buttonRef.current) {
                 const rect = buttonRef.current.getBoundingClientRect();
-                setFlyoutPosition({ top: rect.top });
+                const windowHeight = window.innerHeight;
+                const spaceBelow = windowHeight - rect.top;
+                const flyoutHeight = 300; // Estimated max height or actual max height
+
+                // If space below is less than flyout height and there's more space above, align to bottom
+                if (spaceBelow < flyoutHeight && rect.top > spaceBelow) {
+                    setFlyoutAlign('bottom');
+                    setFlyoutPosition({ top: rect.bottom, left: rect.right });
+                } else {
+                    setFlyoutAlign('top');
+                    setFlyoutPosition({ top: rect.top, left: rect.right });
+                }
             }
             setShowFlyout(!showFlyout);
         }
@@ -108,8 +120,14 @@ export function MenuItem({
                     <>
                         <div className="fixed inset-0 z-[100]" onClick={() => setShowFlyout(false)} />
                         <div
-                            className="fixed left-20 w-60 bg-white border border-[#e8eaed] rounded-lg shadow-lg z-[101] py-2 animate-in slide-in-from-left-2"
-                            style={{ top: `${flyoutPosition.top}px` }}
+                            className={cn(
+                                "fixed left-20 w-60 bg-white border border-[#e8eaed] rounded-lg shadow-lg z-[101] py-2 animate-in slide-in-from-left-2",
+                                flyoutAlign === 'bottom' ? "origin-bottom-left" : "origin-top-left"
+                            )}
+                            style={{
+                                top: flyoutAlign === 'top' ? `${flyoutPosition.top}px` : 'auto',
+                                bottom: flyoutAlign === 'bottom' ? `${window.innerHeight - flyoutPosition.top}px` : 'auto'
+                            }}
                         >
                             <div className="px-4 mb-2 pb-2 border-b border-[#e8eaed]">
                                 <div className="text-[13px] font-semibold text-[#202124]">{label}</div>
@@ -124,39 +142,37 @@ export function MenuItem({
 
                                 return (
                                     <div key={index} className="group/flyout-item relative">
-                                        <Button
-                                            variant="ghost"
-                                            onClick={() => {
-                                                if (child.onClick) {
-                                                    child.onClick();
-                                                }
-                                                setShowFlyout(false);
-                                            }}
-                                            className={cn(
-                                                'w-full justify-start text-[13px] font-medium px-4 py-2.5 h-auto transition-all',
-                                                child.active
-                                                    ? 'bg-[#f1f7ff] text-[#1967d2]'
-                                                    : 'text-[#5f6368] hover:bg-[#fafbfc] hover:text-[#1967d2]'
-                                            )}
-                                        >
-                                            {child.active && (
-                                                <div className="w-1 h-1 rounded-full bg-[#1967d2] mr-2.5 flex-shrink-0" />
-                                            )}
-                                            <span className="truncate min-w-0">{truncatedChildLabel}</span>
-                                        </Button>
-
-                                        {isChildTextTooLong && (
-                                            <TooltipProvider>
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <div className="absolute inset-0" />
-                                                    </TooltipTrigger>
+                                        <TooltipProvider>
+                                            <Tooltip>
+                                                <TooltipTrigger asChild>
+                                                    <Button
+                                                        variant="ghost"
+                                                        onClick={() => {
+                                                            if (child.onClick) {
+                                                                child.onClick();
+                                                            }
+                                                            setShowFlyout(false);
+                                                        }}
+                                                        className={cn(
+                                                            'w-full justify-start text-[13px] font-medium px-4 py-2.5 h-auto transition-all',
+                                                            child.active
+                                                                ? 'bg-[#f1f7ff] text-[#1967d2]'
+                                                                : 'text-[#5f6368] hover:bg-[#fafbfc] hover:text-[#1967d2]'
+                                                        )}
+                                                    >
+                                                        {child.active && (
+                                                            <div className="w-1 h-1 rounded-full bg-[#1967d2] mr-2.5 flex-shrink-0" />
+                                                        )}
+                                                        <span className="truncate min-w-0">{truncatedChildLabel}</span>
+                                                    </Button>
+                                                </TooltipTrigger>
+                                                {isChildTextTooLong && (
                                                     <TooltipContent side="right" sideOffset={8}>
                                                         {child.label}
                                                     </TooltipContent>
-                                                </Tooltip>
-                                            </TooltipProvider>
-                                        )}
+                                                )}
+                                            </Tooltip>
+                                        </TooltipProvider>
                                     </div>
                                 );
                             })}
