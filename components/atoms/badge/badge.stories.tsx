@@ -86,6 +86,10 @@ export const WithIcon: Story = {
         <X className="mr-1 h-3 w-3" />
         Failed
       </Badge>
+      <Badge variant="extreme">
+        <X className="mr-1 h-3 w-3" />
+        Extreme
+      </Badge>
       <Badge variant="warning">
         <AlertTriangle className="mr-1 h-3 w-3" />
         Warning
@@ -115,15 +119,15 @@ export const WithDot: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge variant="success">
-        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-success-foreground" />
+        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-success" />
         Online
       </Badge>
       <Badge variant="warning">
-        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-warning-foreground" />
+        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-warning" />
         Away
       </Badge>
       <Badge variant="destructive">
-        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-destructive-foreground" />
+        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-destructive" />
         Offline
       </Badge>
       <Badge variant="secondary">

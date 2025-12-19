@@ -53,6 +53,7 @@ export {
     ToastClose,
     ToastAction,
 } from "./toast/toast"
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip/tooltip"
 export { Typography, type TypographyProps, type TypographyVariant } from "./typography/typography"
 export { Checkbox, CheckboxGroup, type CheckboxProps, type CheckboxGroupProps, type CheckboxOption } from "./form/checkbox/checkbox"
 export { Input, type InputProps } from "./form/input/input"

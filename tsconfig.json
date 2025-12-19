@@ -41,7 +41,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "vitest.shims.d.ts",
-    ".storybook/vitest.setup.ts"
+    ".storybook/vitest.setup.ts",
+    "lib/constants/sidebar-menu.tsX"
   ],
   "exclude": [
     "node_modules"

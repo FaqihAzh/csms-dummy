@@ -69,6 +69,21 @@
   /* --- Layout --- */
   --border: #E2E8F0; 
   --radius: 0.5rem;
+  --shadow-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  --box-md: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  --box-badge: 0px 1px 2px -1px #0000001A;
+
+  --primary-border-color: #D2E3FC;
+  --secondary-border-color: #5F6368;
+  --outline-border-color: #9AA0A6;
+
+  --extreme: #991B1B;
+  --extreme-foreground: #f7d6d6;
+  --extreme-border-color: #cf5252;
 }
 
 @theme inline {
