@@ -3,7 +3,7 @@
 :root {
   /* --- Base --- */
   --background: #FFFFFF;
-  --foreground: #020817; /* hsl(222.2 84% 4.9%) */
+  --foreground: #020817;
   
   /* --- UI Components --- */
   --card: #FFFFFF;
@@ -23,7 +23,7 @@
   --secondary-background: #F5F5F5; 
   --secondary-border: #DADCE0;
 
-  --accent: #E6F4FF; /* hsl(210 100% 95%) */
+  --accent: #E6F4FF;
   --accent-foreground: #0F172A;
 
   /* --- Text --- */
