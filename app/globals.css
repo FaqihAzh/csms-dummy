@@ -67,7 +67,7 @@
   --menu-item-padding-x: 16px;
   --menu-item-gap: 12px;
   --menu-item-margin: 4px 8px;
-  
+
   /* Color Variables */
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #fafbfc;
@@ -80,19 +80,19 @@
   --color-text-tertiary: #9aa0a6;
   --color-primary: #1967d2;
   --color-primary-dark: #1557b0;
-  
+
   /* Spacing Variables */
   --spacing-4: 4px;
   --spacing-8: 8px;
   --spacing-10: 10px;
   --spacing-12: 12px;
   --spacing-16: 16px;
-  
+
   /* Border Radius */
   --radius-lg: 8px;
-  
+
   /* Shadows */
-  --shadow-md: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  --shadow-md: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
 }
 
 @theme inline {
@@ -149,6 +149,9 @@
   --color-extreme: var(--extreme);
   --color-extreme-foreground: var(--extreme-foreground);
   --color-extreme-border-color: var(--extreme-border-color);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
 }
 
 body {
