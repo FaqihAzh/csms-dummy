@@ -14,7 +14,6 @@ const meta: Meta<typeof Combobox> = {
 export default meta
 type Story = StoryObj<typeof Combobox>
 
-// Mock Data
 const frameworks = [
   { value: "next.js", label: "Next.js" },
   { value: "sveltekit", label: "SvelteKit" },
