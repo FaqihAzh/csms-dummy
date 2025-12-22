@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebarStoreContext } from '@/lib/store/sidebar-store-provider';
+import { useSidebarStoreContext } from '@/lib';
 import { useShallow } from 'zustand/react/shallow';
 
 export function useSidebar() {
@@ -11,6 +11,7 @@ export function useSidebar() {
         setSidebarCollapsed,
         toggleMenu,
         setMenuExpanded,
+        setExpandedMenus,
         resetExpandedMenus,
     } = useSidebarStoreContext(
         useShallow((state) => ({
@@ -20,6 +21,7 @@ export function useSidebar() {
             setSidebarCollapsed: state.setSidebarCollapsed,
             toggleMenu: state.toggleMenu,
             setMenuExpanded: state.setMenuExpanded,
+            setExpandedMenus: state.setExpandedMenus,
             resetExpandedMenus: state.resetExpandedMenus,
         }))
     );
@@ -31,6 +33,7 @@ export function useSidebar() {
         setSidebarCollapsed,
         toggleMenu,
         setMenuExpanded,
+        setExpandedMenus,
         resetExpandedMenus,
     };
 }

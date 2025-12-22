@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 import { Label } from "@/components";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
