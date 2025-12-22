@@ -5,6 +5,7 @@ import { Footer } from "@/components/organisms/layouts/footer/footer";
 import { BackToTop } from "@/components";
 import { SidebarStoreProvider } from "@/lib/store/sidebar-store-provider";
 import { cookies } from "next/headers";
+import { Header } from "@/components/organisms/layouts/header/header";
 
 export default async function RootLayout({
   children,
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <div className="flex h-screen">
             <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
+              <Header/>
               <main className="flex-1 overflow-auto p-6">
                 <QueryProvider>
                   {children}
