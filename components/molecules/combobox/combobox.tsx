@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 
-import { cn } from "@/lib/utils/cn"
+import { cn } from "@/lib"
 import { Button } from "@/components/atoms/button/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, Label, Popover, PopoverContent, PopoverTrigger } from "@/components/atoms"
 
