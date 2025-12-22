@@ -63,4 +63,21 @@ export { Select, type SelectProps, type SelectOption } from "./form/select/selec
 export { Textarea, type TextareaProps } from "./form/textarea/textarea"
 export { Table, type TableProps } from "./data/table/table"
 export { NestedTable, type NestedTableProps } from "./data/nested-table/nested-table"
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+} from "./command/command"
+
+export{
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./popover/popover"
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./collapsible/collapsible"

@@ -1,47 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: #1967d2;
-  --primary-accent: #1557b0;
-  --primary-dark: 215 79% 48%;
-  --primary-foreground: 210 40% 98%;
+  /* --- Base --- */
+  --background: #FFFFFF;
+  --foreground: #020817;
+  
+  /* --- UI Components --- */
+  --card: #FFFFFF;
+  --card-foreground: #020817;
+  --popover: #FFFFFF;
+  --popover-foreground: #020817;
+  
+  /* --- Brand Colors --- */
+  --primary: #1967D2;
+  --primary-foreground: #F8FAFC;
+  --primary-accent: #1557B0;
+  --primary-background: #F1F7FF;
+  --primary-background-accent: #E8F0FE;
 
+  --secondary: #E2E8F0;
+  --secondary-foreground: #334155; 
+  --secondary-background: #F5F5F5; 
+  --secondary-border: #DADCE0;
+
+  --accent: #E6F4FF;
+  --accent-foreground: #0F172A;
+
+  /* --- Text --- */
   --text-primary: #202124;
   --text-secondary: #5F6368;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B; 
 
-  --primary-foreground-accent: #E8F0FE;
+  /* --- Forms --- */
+  --form-input: #FFFFFF;
+  --form-border: #E8EAED;
+  --form-input-disabled: #F9FAFB;
+  --form-border-disabled: #E5E7EB;
+  --input: #E2E8F0;
+  --ring: #2563EB;
 
-  --secondary: 220 13% 91%;
-  --secondary-foreground: 220 9% 20%;
-
-  --muted: 220 14% 96%;
-  --muted-foreground: 220 9% 46%;
-  --accent: 210 100% 95%;
-  --accent-foreground: 222 47% 11%;
-
-  --destructive: #EA4335;
-  --destructive-foreground: #FCE8E6;
-  --destructive-border-color: #FCA5A5;
-
-  --warning: #F9AB00;
-  --warning-foreground: #FEF7E0;
-  --warning-border-color: #FDE293;
-
+  /* --- State: Success --- */
   --success: #188038;
-  --success-foreground: #E6F4EA;
-  --success-border-color: #CEEAD6;
+  --success-foreground: #FFFFFF;
+  --success-background: #E6F4EA;
+  --success-border: #CEEAD6;
 
-  --info: 199 89% 48%;
-  --info-foreground: 0 0% 100%;
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
-  --ring: 221 83% 53%;
+  /* --- State: Warning --- */
+  --warning: #F9AB00;
+  --warning-foreground: #FFFFFF;
+  --warning-background: #FEF7E0;
+  --warning-border: #FDE293;
+
+  /* --- State: Destructive/Error --- */
+  --destructive: #D93025;
+  --destructive-foreground: #FFFFFF;
+  --destructive-background: #FCE8E6; 
+  --destructive-border: #FCA5A5;
+  --extreme: #991B1B;
+
+  /* --- State: Info & Attention --- */
+  --info: #81D4FA;
+  --info-foreground: #FFFFFF;
+  --info-accent: #4FC3F7;
+  --attention: #FEF0CD;
+  --attention-border: #FDE68A;
+
+  /* --- Layout --- */
+  --border: #E2E8F0; 
   --radius: 0.5rem;
   --shadow-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
   --shadow-md: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -96,46 +122,73 @@
 }
 
 @theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-primary-accent: var(--primary-accent);
-  --color-primary-dark: hsl(var(--primary-dark));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-foreground-accent: var(--primary-foreground-accent);
+  --color-primary-background: var(--primary-background);
+  --color-primary-background-accent: var(--primary-background-accent);
 
-  --color-primary-border-color: var(--primary-border-color);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-background: var(--secondary-background);
+  --color-secondary-border: var(--secondary-border);
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
 
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-destructive-border-color: var(--destructive-border-color);
-
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-warning-border-color: var(--warning-border-color);
+  --color-destructive-background: var(--destructive-background);
+  --color-destructive-border: var(--destructive-border);
+  --color-extreme: var(--extreme);
 
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
-  --color-success-border-color: var(--success-border-color);
+  --color-success-background: var(--success-background);
+  --color-success-border: var(--success-border);
 
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-background: var(--warning-background);
+  --color-warning-border: var(--warning-border);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-accent: var(--info-accent);
+
+  --color-attention: var(--attention);
+  --color-attention-border: var(--attention-border);
+
+  --color-form-input: var(--form-input);
+  --color-form-border: var(--form-border);
+  --color-form-input-disabled: var(--form-input-disabled);
+  --color-form-border-disabled: var(--form-border-disabled);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
+  
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 1px);
+  --radius-lg: var(--radius);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
@@ -155,7 +208,7 @@
 }
 
 body {
-  background: hsl(var(--background));
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
