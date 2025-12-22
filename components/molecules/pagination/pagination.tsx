@@ -5,9 +5,9 @@ import {
   ChevronsLeftIcon,
   ChevronsRightIcon,
 } from "lucide-react"
-import { cn } from "@/lib/utils/cn"
 import { buttonVariants, Button } from "@/components/atoms"
 import { usePagination } from "@/lib/hooks/usePagination"
+import { cn } from "@/lib"
 
 export interface PaginationControllerProps {
     currentPage: number
