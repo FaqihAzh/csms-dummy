@@ -47,9 +47,9 @@ export function SidebarHeader({ collapsed, onToggleCollapse }: SidebarHeaderProp
                 size="icon-sm"
                 onClick={onToggleCollapse}
                 title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-                className="transition-colors hover:bg-[#fafbfc]"
+                className="transition-colors text-text-secondary hover:bg-[#fafbfc]"
             >
-                {collapsed ? <PanelLeft size={18} className='hover:text-primary' /> : <PanelLeftClose size={18} className='hover:text-primary' />}
+                {collapsed ? <PanelLeft size={18} className=' hover:text-primary' /> : <PanelLeftClose size={18} className=' hover:text-primary' />}
             </Button>
         </div>
     );

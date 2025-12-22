@@ -3,6 +3,8 @@
 import React, { useState, useRef } from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
+import { useSidebar } from '@/hooks/use-sidebar';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     Button,
     Tooltip,
@@ -32,7 +34,8 @@ export function MenuItem({
     level = 0,
     collapsed = false,
 }: MenuItemProps) {
-    const [isExpanded, setIsExpanded] = useState(expanded);
+    const { expandedMenus, toggleMenu, resetExpandedMenus } = useSidebar();
+    const isExpanded = expandedMenus[label] || false;
     const [showFlyout, setShowFlyout] = useState(false);
     const [flyoutPosition, setFlyoutPosition] = useState({ top: 0, left: 0 });
     const [flyoutAlign, setFlyoutAlign] = useState<'top' | 'bottom'>('top');
@@ -41,16 +44,18 @@ export function MenuItem({
 
     const handleClick = () => {
         if (children && !collapsed) {
-            setIsExpanded(!isExpanded);
+            if (level === 0 && !isExpanded) {
+                resetExpandedMenus();
+            }
+            toggleMenu(label);
         }
         if (children && collapsed) {
             if (buttonRef.current) {
                 const rect = buttonRef.current.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
                 const spaceBelow = windowHeight - rect.top;
-                const flyoutHeight = 300; // Estimated max height or actual max height
+                const flyoutHeight = 300;
 
-                // If space below is less than flyout height and there's more space above, align to bottom
                 if (spaceBelow < flyoutHeight && rect.top > spaceBelow) {
                     setFlyoutAlign('bottom');
                     setFlyoutPosition({ top: rect.bottom, left: rect.right });
@@ -75,7 +80,7 @@ export function MenuItem({
     if (collapsed && level === 0) {
         return (
             <>
-                <div className="relative">
+                <div className="relative flex justify-center w-full"> {/* Tambahkan flex justify-center */}
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -87,13 +92,14 @@ export function MenuItem({
                                     onMouseEnter={() => setIsHovered(true)}
                                     onMouseLeave={() => setIsHovered(false)}
                                     className={cn(
-                                        'w-full h-11 mx-2 my-1 transition-all duration-200',
+                                        // Hapus mx-2 dan gunakan mx-auto agar tombol berada di tengah kontainer
+                                        'w-10 h-10 mx-auto my-1 transition-all duration-200 flex items-center justify-center',
                                         (active || showFlyout) && 'bg-gradient-to-b from-[#e8f0fe] to-[#f1f7ff] shadow-md'
                                     )}
                                 >
                                     <div
                                         className={cn(
-                                            'transition-colors duration-200',
+                                            'transition-colors duration-200 flex items-center justify-center',
                                             active || isActiveOrHasActiveChild || showFlyout
                                                 ? 'text-[#1967d2]'
                                                 : isHovered
@@ -112,7 +118,7 @@ export function MenuItem({
                     </TooltipProvider>
 
                     {isActiveOrHasActiveChild && (
-                        <div className="absolute left-1 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#1967d2] rounded-r" />
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#1967d2] rounded-r" />
                     )}
                 </div>
 
@@ -183,7 +189,8 @@ export function MenuItem({
         );
     }
 
-    const paddingLeft = level === 0 ? 'pl-[19px]' : level === 1 ? 'pl-[35px]' : 'pl-[51px]';
+    const paddingLeft = level === 0 ? 'pl-[19px]' : level === 1 ? 'pl-[47px]' : 'pl-[67px]';
+
     const maxLength = level === 0 ? 25 : level === 1 ? 20 : 18;
     const isTextTooLong = label.length > maxLength;
     const truncatedLabel = isTextTooLong ? `${label.substring(0, maxLength)}...` : label;
@@ -199,9 +206,9 @@ export function MenuItem({
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             className={cn(
-                                'w-full justify-start h-10 pr-4 gap-3 transition-all duration-200 text-[13px] font-medium hover:text-primary',
+                                'w-[calc(100%-16px)] justify-start h-10 pr-4 gap-3 transition-all duration-200 text-[13px] font-medium hover:text-primary mx-2 ',
                                 paddingLeft,
-                                level === 0 && 'mx-2 my-1',
+                                level === 0 && 'my-1',
                                 level > 0 && 'mb-1',
                                 active && 'bg-gradient-to-b from-[#e8f0fe] to-[#f1f7ff] border-l-[3px] border-l-[#1967d2] shadow-md',
                                 !active && level === 0 && 'border-l-[3px] border-l-transparent',
@@ -212,42 +219,30 @@ export function MenuItem({
                                         : 'text-[#5f6368]'
                             )}
                         >
-                            {level > 0 ? (
-                                <div className="w-5 h-5 flex items-center justify-center flex-shrink-0" />
-                            ) : (
+                            {level === 0 ? (
                                 <div
                                     className={cn(
                                         'w-5 h-5 flex items-center justify-center flex-shrink-0 transition-colors duration-200',
-                                        active || isActiveOrHasActiveChild
-                                            ? 'text-[#1967d2]'
-                                            : isHovered
-                                                ? 'text-[#1967d2]'
-                                                : 'text-[#5f6368]'
+                                        active || isActiveOrHasActiveChild ? 'text-[#1967d2]' : isHovered ? 'text-[#1967d2]' : 'text-[#5f6368]'
                                     )}
                                 >
                                     {icon}
                                 </div>
-                            )}
+                            ) : null}
 
                             <span className="flex-1 text-left truncate min-w-0">{truncatedLabel}</span>
 
                             {children && (
-                                <div
-                                    className={cn(
-                                        'transition-colors duration-200 flex-shrink-0',
-                                        active || isActiveOrHasActiveChild
-                                            ? 'text-[#1967d2]'
-                                            : isHovered
-                                                ? 'text-[#1967d2]'
-                                                : 'text-[#9aa0a6]'
-                                    )}
-                                >
-                                    {isExpanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+                                <div className={cn(
+                                    'transition-colors duration-200 flex-shrink-0',
+                                    active || isActiveOrHasActiveChild ? 'text-[#1967d2]' : isHovered ? 'text-[#1967d2]' : 'text-[#9aa0a6]'
+                                )}>
+                                    {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                                 </div>
                             )}
                         </Button>
                     </TooltipTrigger>
-                    {isTextTooLong && level > 0 && (
+                    {isTextTooLong && (
                         <TooltipContent side="right" sideOffset={4}>
                             {label}
                         </TooltipContent>
@@ -255,13 +250,23 @@ export function MenuItem({
                 </Tooltip>
             </TooltipProvider>
 
-            {children && isExpanded && !collapsed && (
-                <div className="bg-[#fafbfc] rounded-lg mx-2 mt-0 pt-2 pb-1">
-                    {children.map((child, index) => (
-                        <MenuItem key={index} {...child} level={level + 1} collapsed={collapsed} />
-                    ))}
-                </div>
-            )}
+            <AnimatePresence>
+                {children && isExpanded && !collapsed && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                    >
+                        <div className="bg-[#fafbfc] rounded-lg mx-2 mt-0 pt-1 pb-1">
+                            {children.map((child, index) => (
+                                <MenuItem key={index} {...child} level={level + 1} collapsed={collapsed} />
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }

@@ -84,6 +84,41 @@
   --extreme: #991B1B;
   --extreme-foreground: #f7d6d6;
   --extreme-border-color: #cf5252;
+
+  /* Sidebar Variables */
+  --sidebar-width: 280px;
+  --header-height: 64px;
+  --sidebar-header-padding-x: 20px;
+  --menu-item-height: 40px;
+  --menu-item-padding-x: 16px;
+  --menu-item-gap: 12px;
+  --menu-item-margin: 4px 8px;
+
+  /* Color Variables */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafbfc;
+  --color-bg-active-start: #e8f0fe;
+  --color-bg-active-end: #f1f7ff;
+  --color-border-primary: #e8eaed;
+  --color-border-active: #1967d2;
+  --color-text-primary: #202124;
+  --color-text-secondary: #5f6368;
+  --color-text-tertiary: #9aa0a6;
+  --color-primary: #1967d2;
+  --color-primary-dark: #1557b0;
+
+  /* Spacing Variables */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+
+  /* Shadows */
+  --shadow-md: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
 }
 
 @theme inline {
@@ -154,11 +189,22 @@
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: calc(var(--radius) - 1px);
   --radius-lg: var(--radius);
-}
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
 
-/* Base resets */
-* {
-  border-color: var(--border);
+  --box-md: var(--box-md);
+  --box-badge: var(--box-badge);
+
+  --color-outline-border-color: var(--outline-border-color);
+  --color-secondary-border-color: var(--secondary-border-color);
+
+  --color-extreme: var(--extreme);
+  --color-extreme-foreground: var(--extreme-foreground);
+  --color-extreme-border-color: var(--extreme-border-color);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
 }
 
 body {
