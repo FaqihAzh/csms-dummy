@@ -20,3 +20,4 @@ export {
     DropdownMenuSubTrigger,
     DropdownMenuSubContent,
 } from "./dropdown/dropdown"
+export { BackToTop } from "./back-to-top/back-to-top";

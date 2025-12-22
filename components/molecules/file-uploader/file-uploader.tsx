@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { Upload, X, File, Image as ImageIcon, FileText, Video, Music, Check, AlertCircle } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 import { Label, Button, Badge } from "@/components";
 
 export interface UploadedFile {

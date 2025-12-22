@@ -80,3 +80,4 @@ export{
   PopoverContent,
   PopoverTrigger,
 } from "./popover/popover"
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./collapsible/collapsible"

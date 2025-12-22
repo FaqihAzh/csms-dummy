@@ -15,7 +15,7 @@ import {
     Row,
 } from "@tanstack/react-table";
 import { ChevronDown, ChevronRight, ChevronsUpDown, ChevronUp } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 
 export interface TableProps<TData> {
     data: TData[];

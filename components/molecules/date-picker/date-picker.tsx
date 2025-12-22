@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Calendar, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 import { Label, Button } from "@/components";
 
 const MONTHS = [

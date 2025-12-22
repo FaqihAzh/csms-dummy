@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils/cn';
-import { useSidebar } from '@/hooks/use-sidebar';
+import { cn } from '@/lib';
+import { useSidebar } from '@/hooks';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Button,
@@ -24,7 +24,7 @@ export interface MenuItemProps {
     collapsed?: boolean;
 }
 
-export function MenuItem({
+export const MenuItem = React.memo(function MenuItem({
     icon,
     label,
     active = false,
@@ -34,7 +34,7 @@ export function MenuItem({
     level = 0,
     collapsed = false,
 }: MenuItemProps) {
-    const { expandedMenus, toggleMenu, resetExpandedMenus } = useSidebar();
+    const { expandedMenus, toggleMenu } = useSidebar();
     const isExpanded = expandedMenus[label] || false;
     const [showFlyout, setShowFlyout] = useState(false);
     const [flyoutPosition, setFlyoutPosition] = useState({ top: 0, left: 0 });
@@ -44,9 +44,6 @@ export function MenuItem({
 
     const handleClick = () => {
         if (children && !collapsed) {
-            if (level === 0 && !isExpanded) {
-                resetExpandedMenus();
-            }
             toggleMenu(label);
         }
         if (children && collapsed) {
@@ -71,16 +68,18 @@ export function MenuItem({
         }
     };
 
-    const hasActiveChild = children?.some(
-        (child) => child.active || child.children?.some((subChild) => subChild.active)
-    );
+    const hasActiveChild = useMemo(() => {
+        return children?.some(
+            (child) => child.active || child.children?.some((subChild) => subChild.active)
+        );
+    }, [children]);
 
     const isActiveOrHasActiveChild = active || hasActiveChild;
 
     if (collapsed && level === 0) {
         return (
             <>
-                <div className="relative flex justify-center w-full"> {/* Tambahkan flex justify-center */}
+                <div className="relative flex justify-center w-full">
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -92,7 +91,6 @@ export function MenuItem({
                                     onMouseEnter={() => setIsHovered(true)}
                                     onMouseLeave={() => setIsHovered(false)}
                                     className={cn(
-                                        // Hapus mx-2 dan gunakan mx-auto agar tombol berada di tengah kontainer
                                         'w-10 h-10 mx-auto my-1 transition-all duration-200 flex items-center justify-center',
                                         (active || showFlyout) && 'bg-gradient-to-b from-[#e8f0fe] to-[#f1f7ff] shadow-md'
                                     )}
@@ -206,7 +204,7 @@ export function MenuItem({
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             className={cn(
-                                'w-[calc(100%-16px)] justify-start h-10 pr-4 gap-3 transition-all duration-200 text-[13px] font-medium hover:text-primary mx-2 ',
+                                'w-[calc(100%-16px)] justify-start h-10 pr-4 gap-3 transition-all duration-200 text-[13px] font-medium hover:text-primary mx-2',
                                 paddingLeft,
                                 level === 0 && 'my-1',
                                 level > 0 && 'mb-1',
@@ -269,4 +267,4 @@ export function MenuItem({
             </AnimatePresence>
         </>
     );
-}
+});
