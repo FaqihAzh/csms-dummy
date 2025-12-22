@@ -1,6 +1,6 @@
 import { PanelLeft, PanelLeftClose } from 'lucide-react';
 import { Button } from '@/components';
-import { cn } from '@/lib/utils/cn';
+import { cn } from '@/lib';
 
 interface SidebarHeaderProps {
     collapsed: boolean;

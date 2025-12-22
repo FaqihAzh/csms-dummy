@@ -13,7 +13,7 @@ import {
     Row,
 } from "@tanstack/react-table";
 import { ChevronDown, ChevronRight, Check, X } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 import { Badge, Button } from "@/components";
 
 export type ApprovalStatus = "pending" | "approved" | "rejected";

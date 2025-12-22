@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Check, Minus } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { Label } from "@/components";
 

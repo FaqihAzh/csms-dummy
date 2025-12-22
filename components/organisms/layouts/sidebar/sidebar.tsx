@@ -1,34 +1,45 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { SidebarHeader, MenuItem } from '@/components/organisms/layouts/sidebar';
-import { ScrollArea } from '@/components';
-import { cn } from '@/lib/utils/cn';
-import { getSidebarMenuItems } from '@/lib/constants';
-import { useSidebar } from '@/hooks/use-sidebar';
-import { motion } from 'framer-motion';
+import { useEffect, useMemo, useCallback } from 'react';
+import { SidebarHeader, MenuItem, ScrollArea } from '@/components';
+import { findParentMenus, cn, getSidebarMenuItems } from '@/lib';
+import { useSidebar } from '@/hooks';
 
 export function Sidebar() {
     const pathname = usePathname();
     const router = useRouter();
-    const { isCollapsed, toggleSidebar } = useSidebar();
+    const { isCollapsed, toggleSidebar, setExpandedMenus } = useSidebar();
 
     const currentPage = pathname.split('/').filter(Boolean).pop() || 'dashboard';
 
-    const handleNavigate = (page: string) => {
+    const handleNavigate = useCallback((page: string) => {
         router.push(`/${page}`);
-    };
+    }, [router]);
 
-    const menuItems = getSidebarMenuItems(currentPage, handleNavigate);
+    const menuItems = useMemo(() => getSidebarMenuItems(currentPage, handleNavigate), [currentPage, handleNavigate]);
+
+    useEffect(() => {
+        const parentMenusToExpand = findParentMenus(menuItems);
+
+        const newExpandedMenus: Record<string, boolean> = {};
+
+        parentMenusToExpand.forEach(menuLabel => {
+            newExpandedMenus[menuLabel] = true;
+        });
+
+        setExpandedMenus(newExpandedMenus);
+    }, [currentPage, menuItems, setExpandedMenus]);
 
     return (
-        <motion.aside
-            initial={false}
-            animate={{ width: isCollapsed ? 72 : 280 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+        <aside
             className={cn(
-                'flex flex-col flex-shrink-0 border-r border-[#e8eaed] h-screen bg-white overflow-hidden'
+                'flex flex-col flex-shrink-0 border-r border-[#e8eaed] h-screen bg-white transition-[width] duration-300 ease-in-out',
+                isCollapsed ? 'w-[72px]' : 'w-[280px]'
             )}
+            style={{
+                width: isCollapsed ? '72px' : '280px',
+            }}
         >
             <SidebarHeader collapsed={isCollapsed} onToggleCollapse={toggleSidebar} />
 
@@ -39,6 +50,6 @@ export function Sidebar() {
                     ))}
                 </nav>
             </ScrollArea>
-        </motion.aside>
+        </aside>
     );
 }

@@ -63,3 +63,4 @@ export { Select, type SelectProps, type SelectOption } from "./form/select/selec
 export { Textarea, type TextareaProps } from "./form/textarea/textarea"
 export { Table, type TableProps } from "./data/table/table"
 export { NestedTable, type NestedTableProps } from "./data/nested-table/nested-table"
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./collapsible/collapsible"
