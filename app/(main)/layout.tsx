@@ -24,18 +24,18 @@ export default async function RootLayout({
 
     return (
         <html lang="en">
-            <body>
+            <body className="overflow-hidden">
                 <SidebarStoreProvider
                     defaultCollapsed={defaultCollapsed}
                     defaultExpandedMenus={defaultExpandedMenus}
                 >
                     <div className="flex h-screen">
                         <Sidebar />
-                        <div className="flex flex-col flex-1 overflow-hidden">
+                        <div className="flex flex-col flex-1 overflow-auto">
                             <Header />
                             <main className="flex-1 overflow-auto">
                                 <QueryProvider>
-                                    <div className="p-6">{children}</div>
+                                    <div className="bg-secondary-background">{children}</div>
                                 </QueryProvider>
                                 <Footer />
                             </main>

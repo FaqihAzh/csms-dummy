@@ -98,7 +98,7 @@ const Table = <TData extends object>({
                 <table className="w-full caption-bottom text-sm">
                     <thead className="border-b border-secondary-border bg-muted/50">
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id} className="border-b-secondary-border-color transition-colors hover:bg-muted/50">
+                            <tr key={headerGroup.id} className=" transition-colors hover:bg-muted/50">
                                 {headerGroup.headers.map((header) => (
                                     <th
                                         key={header.id}
@@ -138,7 +138,7 @@ const Table = <TData extends object>({
                                 <React.Fragment key={row.id}>
                                     <tr
                                         className={cn(
-                                            "border-b border-primary-border-color transition-colors hover:bg-muted/50",
+                                            "border-b border-secondary-border transition-colors hover:bg-muted/50",
                                             onRowClick && "cursor-pointer"
                                         )}
                                         onClick={() => onRowClick?.(row)}
