@@ -32,14 +32,13 @@ export default async function RootLayout({
                     <div className="flex h-screen">
                         <Sidebar />
                         <div className="flex flex-col flex-1 overflow-hidden">
-                            <Header/>
-                            <main className="flex-1 overflow-auto p-6">
+                            <Header />
+                            <main className="flex-1 overflow-auto">
                                 <QueryProvider>
-                                    {children}
+                                    <div className="p-6">{children}</div>
                                 </QueryProvider>
+                                <Footer />
                             </main>
-                            <Footer />
-
                             <BackToTop />
                         </div>
                     </div>
