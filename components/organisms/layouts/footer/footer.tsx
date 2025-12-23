@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Shield, Slash } from 'lucide-react';
 import { cn } from '@/lib';
 import { useMediaQuery } from '@/hooks';
-import { Button, Typography, PrivacyPolicyModal } from '@/components';
+import { Button, Typography, PrivacyFAQModal, privacyPolicyData } from '@/components';
 
 export function Footer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,10 +32,12 @@ export function Footer() {
                 </div>
             </footer>
 
-            <PrivacyPolicyModal
+            <PrivacyFAQModal
                 open={isOpen}
                 onOpenChange={setIsOpen}
                 mode={isMobile ? 'drawer' : 'dialog'}
+                data={privacyPolicyData}
+                modalName="privacy-policy"
             />
         </>
     );
