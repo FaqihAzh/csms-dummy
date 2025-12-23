@@ -241,7 +241,7 @@ export default function DashboardPage() {
                         <Typography variant="h3">Risk Assessment</Typography>
                         <p>Manajemen dan evaluasi risiko kegiatan kontraktor</p>
                     </div>
-                    <div className="flex flex-row items-center md:flex-col md:items-start my-auto gap-3">
+                    <div className="flex flex-col items-start md:flex-row md:items-center my-auto gap-3">
                         <Button variant="outline" leftIcon={<Download className="h-4 w-4" />}>
                             Export
                         </Button>
