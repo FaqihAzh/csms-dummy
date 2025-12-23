@@ -180,6 +180,9 @@
   --color-form-border-disabled: var(--form-border-disabled);
 
   --color-border: var(--border);
+  --color-primary-border-color: var(--primary-border-color);
+  --color-secondary-border-color: var(--secondary-border-color);
+  --color-outline-border-color: var(--outline-border-color); 
   --color-input: var(--input);
   --color-ring: var(--ring);
 

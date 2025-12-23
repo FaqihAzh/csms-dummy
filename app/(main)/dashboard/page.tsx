@@ -1,10 +1,266 @@
-import { Typography } from "@/components";
+"use client"
+
+import { Badge, Button, Table, Typography } from "@/components";
+import { ColumnDef } from "@tanstack/react-table";
+import { CheckCircle, Circle, Download, Pen, Plus } from "lucide-react";
 
 export default function DashboardPage() {
-    return (
-        <div>
-            <p className="text-justify min-h-screen">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum porro consectetur voluptate vero delectus dolorum ad, cupiditate minus maxime magnam aspernatur corrupti eveniet enim a neque soluta veritatis tenetur deleniti reiciendis numquam ipsam praesentium corporis officiis quo. Dolorem quis voluptates delectus aperiam velit quo, ad ratione eligendi, excepturi ea assumenda doloribus doloremque quibusdam tempora aut? Sint sapiente veniam impedit porro quidem harum eos tempora itaque nulla aperiam quia numquam omnis minus debitis ipsam pariatur dicta consequuntur laudantium nostrum temporibus, repellendus recusandae! Molestiae eaque impedit, et dolores aut nam officiis dignissimos itaque illum dicta ad nihil voluptate quibusdam, sequi ratione perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, dolorem, neque, pariatur repudiandae quod obcaecati unde voluptatum rerum voluptate dolorum excepturi fugiat mollitia ad perferendis quibusdam dignissimos debitis ipsam atque et? Dolorem sint maiores et vel, impedit ullam ad molestias amet hic velit esse! Blanditiis alias necessitatibus aut eum voluptate est reprehenderit minus, aperiam quos ducimus in quis sequi quisquam minima earum. Ab animi itaque asperiores molestiae inventore. Fugit iste quos quia sequi labore nisi pariatur dolor itaque, incidunt voluptatum, accusamus, reprehenderit aperiam. Molestiae sunt, eligendi harum veniam voluptas quisquam beatae fuga distinctio praesentium nostrum vero, quia dolor ipsum architecto facere quis perferendis odit enim fugit exercitationem modi. Est labore repudiandae quo dignissimos quibusdam facilis itaque deserunt cupiditate nam at laborum qui enim iste illo, minus nobis ipsum saepe rerum. Laboriosam labore, temporibus, aliquam ad cum autem, vel praesentium ducimus similique voluptate at architecto quisquam provident ratione vitae vero repellendus aperiam. Excepturi nisi error eum sunt eaque reprehenderit voluptatum asperiores unde ut explicabo numquam nulla voluptatibus sapiente dolorem veritatis maiores dignissimos, sit debitis. Voluptas ipsam molestias eos beatae architecto magnam repellat nulla explicabo doloribus hic tempore, odio totam repellendus voluptate ut nostrum asperiores quis! Corporis, tempora veniam perferendis laborum quaerat perspiciatis sed necessitatibus quidem aspernatur eos maiores ipsum consequatur architecto explicabo sunt ab at minima quisquam totam iure fugiat modi harum repellendus! In quidem esse animi ex molestias, rem, libero a quibusdam, voluptatibus placeat maiores. Modi aliquam omnis sit, quam, cumque facere magni maxime architecto temporibus qui vitae nam. Illum assumenda animi voluptatem eius impedit at nobis porro voluptate, ducimus nihil illo ab, laudantium quia veniam optio veritatis itaque aspernatur! Eius, voluptas quod illum, maxime asperiores excepturi, error deserunt laboriosam ullam dicta nostrum qui numquam. Ad corporis pariatur, veritatis nulla fuga reiciendis exercitationem laborum maiores quae tempora qui blanditiis, ducimus iure eligendi, necessitatibus alias ullam quos? Exercitationem repudiandae, nihil veritatis laboriosam beatae labore quaerat ratione pariatur, tempore ab blanditiis consequatur nostrum ad odit provident distinctio dignissimos illum fugit eius eligendi similique? Cupiditate itaque atque eligendi cum iure id provident. Tempora cumque, ducimus placeat libero modi facere suscipit eveniet, explicabo blanditiis iure odio, ut voluptas porro. Hic ut necessitatibus error nobis nemo eaque suscipit. Nemo, deleniti ipsum. Autem repudiandae placeat id perferendis facere inventore, a voluptates quas officiis ipsam ratione ab? Cum nesciunt itaque cumque recusandae ullam qui asperiores pariatur nulla similique, molestiae explicabo eaque? Molestiae, placeat repellat quibusdam, dolorum sint asperiores sed nisi eius ratione itaque rerum accusamus obcaecati at expedita. Beatae porro ipsa modi minus excepturi debitis optio sed assumenda asperiores nesciunt. Animi in provident reprehenderit reiciendis, nihil sed quia dolor praesentium error ut cupiditate debitis adipisci, distinctio itaque aliquid odit, et ab cumque deleniti totam dolore dicta sit dolores amet! Quis doloribus maxime laborum esse commodi, sunt sapiente vero nihil nam fuga reiciendis optio fugit, quam temporibus ullam? Excepturi facere reiciendis qui eius earum illo sunt placeat molestias laudantium quo ut inventore corrupti, reprehenderit fuga, quidem nemo accusamus. Veniam, quisquam? Illum omnis vero non aperiam nisi eos sed.</p>
-        </div>
+    interface User {
+        id: string;
+        kegiatan: string;
+        potensi_bahaya: string;
+        dampak_resiko: string;
+        konsekuensi: string;
+        kemungkinan: string;
+        level_resiko: "rendah" | "moderat" | "tinggi" | "ekstrem";
+        verifikasi: boolean;
+        unit: string;
+    }
 
+    const users: User[] = [
+        { 
+            id: "1",
+            kegiatan: "Aktivitas Produksi",
+            potensi_bahaya: "Tertimpa",
+            dampak_resiko: "Kebisingan Mesin",
+            konsekuensi: "Admin",
+            kemungkinan: "Sedang",
+            level_resiko: "tinggi",
+            verifikasi: true,
+            unit: "Unit Pengembangan"
+        },
+        { 
+            id: "2",
+            kegiatan: "Pemeliharaan Mesin",
+            potensi_bahaya: "Tersengat Listrik",
+            dampak_resiko: "Luka Bakar",
+            konsekuensi: "Kritis",
+            kemungkinan: "Ekstrem",
+            level_resiko: "ekstrem",
+            verifikasi: false,
+            unit: "Unit Operasional"
+        },
+        { 
+            id: "3",
+            kegiatan: "Handling Material",
+            potensi_bahaya: "Terjatuh",
+            dampak_resiko: "Fraktur",
+            konsekuensi: "Serius",
+            kemungkinan: "Ekstrem",
+            level_resiko: "moderat",
+            verifikasi: true,
+            unit: "Unit Logistik"
+        },
+        { 
+            id: "4",
+            kegiatan: "Inspeksi Area",
+            potensi_bahaya: "Terpeleset",
+            dampak_resiko: "Memar",
+            konsekuensi: "Minor",
+            kemungkinan: "Rendah",
+            level_resiko: "rendah",
+            verifikasi: true,
+            unit: "Unit Keselamatan"
+        },
+        { 
+            id: "1",
+            kegiatan: "Aktivitas Produksi",
+            potensi_bahaya: "Tertimpa",
+            dampak_resiko: "Kebisingan Mesin",
+            konsekuensi: "Admin",
+            kemungkinan: "Sedang",
+            level_resiko: "tinggi",
+            verifikasi: true,
+            unit: "Unit Pengembangan"
+        },
+        { 
+            id: "2",
+            kegiatan: "Pemeliharaan Mesin",
+            potensi_bahaya: "Tersengat Listrik",
+            dampak_resiko: "Luka Bakar",
+            konsekuensi: "Kritis",
+            kemungkinan: "Ekstrem",
+            level_resiko: "ekstrem",
+            verifikasi: false,
+            unit: "Unit Operasional"
+        },
+        { 
+            id: "3",
+            kegiatan: "Handling Material",
+            potensi_bahaya: "Terjatuh",
+            dampak_resiko: "Fraktur",
+            konsekuensi: "Serius",
+            kemungkinan: "Ekstrem",
+            level_resiko: "moderat",
+            verifikasi: true,
+            unit: "Unit Logistik"
+        },
+        { 
+            id: "4",
+            kegiatan: "Inspeksi Area",
+            potensi_bahaya: "Terpeleset",
+            dampak_resiko: "Memar",
+            konsekuensi: "Minor",
+            kemungkinan: "Rendah",
+            level_resiko: "rendah",
+            verifikasi: true,
+            unit: "Unit Keselamatan"
+        },
+        { 
+            id: "1",
+            kegiatan: "Aktivitas Produksi",
+            potensi_bahaya: "Tertimpa",
+            dampak_resiko: "Kebisingan Mesin",
+            konsekuensi: "Admin",
+            kemungkinan: "Sedang",
+            level_resiko: "tinggi",
+            verifikasi: true,
+            unit: "Unit Pengembangan"
+        },
+        { 
+            id: "2",
+            kegiatan: "Pemeliharaan Mesin",
+            potensi_bahaya: "Tersengat Listrik",
+            dampak_resiko: "Luka Bakar",
+            konsekuensi: "Kritis",
+            kemungkinan: "Ekstrem",
+            level_resiko: "ekstrem",
+            verifikasi: false,
+            unit: "Unit Operasional"
+        },
+        { 
+            id: "3",
+            kegiatan: "Handling Material",
+            potensi_bahaya: "Terjatuh",
+            dampak_resiko: "Fraktur",
+            konsekuensi: "Serius",
+            kemungkinan: "Ekstrem",
+            level_resiko: "moderat",
+            verifikasi: true,
+            unit: "Unit Logistik"
+        },
+        { 
+            id: "4",
+            kegiatan: "Inspeksi Area",
+            potensi_bahaya: "Terpeleset",
+            dampak_resiko: "Memar",
+            konsekuensi: "Minor",
+            kemungkinan: "Rendah",
+            level_resiko: "rendah",
+            verifikasi: true,
+            unit: "Unit Keselamatan"
+        },
+    ];
+
+    const getLevelVariant = ( variant: string) => {
+        switch (variant) {
+          case 'rendah':
+              return "success"
+          case 'ekstrem':
+              return "extreme"
+          case 'tinggi':
+              return "destructive"
+          default:
+              return "default"
+        }
+    }
+
+    const userColumns: ColumnDef<User>[] = [
+        {
+            accessorKey: "kegiatan",
+            header: "Kegiatan",
+            size: 300,
+        },
+        {
+            accessorKey: "potensi_bahaya",
+            header: "Potensi Bahaya",
+            size: 140,
+        },
+        {
+            accessorKey: "dampak_resiko",
+            header: "Dampak Resiko",
+            size: 140,
+        },
+        {
+            accessorKey: "konsekuensi",
+            header: "Konsekuensi",
+            size: 120,
+        },
+        {
+            accessorKey: "kemungkinan",
+            header: "Kemungkinan",
+            size: 120,
+        },
+        {
+            accessorKey: "level_resiko",
+            header: "Level Resiko",
+            size: 120,
+            cell: ({ row }) => (
+                <Badge variant={getLevelVariant(row.original.level_resiko)}>
+                    {row.original.level_resiko}
+                </Badge>
+            ),
+        },
+        {
+            accessorKey: "verifikasi",
+            header: "Verifikasi",
+            size: 100,
+            cell: ({ row }) => (
+                <div className="items-center">
+                    {row.original.verifikasi === true ? (
+                        <CheckCircle className="text-success size-4"/>
+                    ) : (
+                        <Circle className="text-text-secondary size-4"/>
+                    )}
+                </div>
+            ),
+        },
+        {
+            accessorKey: "unit",
+            header: "Unit",
+            size: 150,
+        },
+        {
+            accessorKey: "action",
+            header: "Aksi",
+            size: 80,
+            cell: ({ row }) => (
+                <Button variant="ghost">
+                    <Pen className="size-4"/>
+                </Button>
+            )
+        },
+    ];
+
+
+    return (
+        <div className="w-full">
+            <div className="flex flex-col space-y-4">
+                <div className="flex justify-between items-start bg-white p-4 md:p-8">
+                    <div className="flex flex-col gap-1">
+                        <Typography variant="h3">Risk Assessment</Typography>
+                        <p>Manajemen dan evaluasi risiko kegiatan kontraktor</p>
+                    </div>
+                    <div className="flex flex-row items-center md:flex-col md:items-start my-auto gap-3">
+                        <Button variant="outline" leftIcon={<Download className="h-4 w-4" />}>
+                            Export
+                        </Button>
+                        <Button leftIcon={<Plus className="h-4 w-4" />}>
+                            Tambah Risk Assessment
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="px-4 pb-4 w-full">
+                    <Table 
+                        data={users}
+                        columns={userColumns}
+                        enablePagination={true}
+                        pageSize={8}
+                        className="bg-background"
+                    />
+                </div>
+            </div>
+        </div>
     );
 }

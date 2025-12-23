@@ -12,7 +12,7 @@ export function Footer() {
 
     return (
         <>
-            <footer className="flex-shrink-0 border-t border-[#e8eaed] bg-white">
+            <footer className="min-w-full shrink-0 border-t border-[#e8eaed] bg-white">
                 <div className="py-1 bg-transparent flex items-center justify-center gap-2">
                     <Typography variant="p" className="text-center text-xs text-[#5f6368]">
                         © {new Date().getFullYear()} New CSMS
@@ -22,7 +22,7 @@ export function Footer() {
                         variant="ghost"
                         onClick={() => setIsOpen(true)}
                         className={cn(
-                            "!px-0 flex items-center gap-1 text-xs text-[#5f6368] hover:text-[#1967d2] hover:bg-transparent transition-colors",
+                            "px-0! flex items-center gap-1 text-xs text-[#5f6368] hover:text-[#1967d2] hover:bg-transparent transition-colors",
                             "group"
                         )}
                     >
