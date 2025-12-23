@@ -97,7 +97,7 @@ export function Header() {
             </button>
             <Badge 
               variant="extreme" 
-              className="absolute -top-1 -right-1 p-0 min-w-3 h-3 flex items-center justify-center text-xs"
+              className="absolute -top-1 -right-1 p-0 min-w-3  h-3 flex items-center justify-center text-xs"
             />
             </div>
 
