@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 import { QueryProvider, SidebarStoreProvider } from "@/lib";
-import { Sidebar, Footer, BackToTop } from "@/components";
+import { Sidebar, Footer, BackToTop, Header } from "@/components";
 import { cookies } from "next/headers";
 
 export default async function RootLayout({
@@ -32,6 +32,7 @@ export default async function RootLayout({
                     <div className="flex h-screen">
                         <Sidebar />
                         <div className="flex flex-col flex-1 overflow-hidden">
+                            <Header/>
                             <main className="flex-1 overflow-auto p-6">
                                 <QueryProvider>
                                     {children}
