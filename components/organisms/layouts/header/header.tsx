@@ -90,18 +90,16 @@ export function Header() {
           />
 
 
-          {/* Notification */}
-          <div className="relative inline-flex hover:bg-accent transition-colors rounded-md">
-            <button className="p-2">
-              <Bell className='text-foreground' size={16}/>
+            {/* Notification */}
+            <div className="relative inline-flex">
+            <button className='p-2 hover:bg-accent transition-colors rounded-md'>
+              <Bell className='text-foreground' size={20}/>
             </button>
             <Badge 
               variant="extreme" 
-              className="absolute fill-current -top-1 -right-1 px-1 min-w-[1.25rem] h-4 text-xs"
-            >
-              1
-            </Badge>
-          </div>
+              className="absolute -top-1 -right-1 p-0 min-w-3 h-3 flex items-center justify-center text-xs"
+            />
+            </div>
 
           {/* User Dropdown*/}
           <DropdownMenu>

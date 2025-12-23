@@ -14,7 +14,7 @@ const badgeVariants = cva(
         destructive:
           "shadow-box-badge border-destructive-border-color bg-destructive-foreground text-destructive hover:bg-destructive-foreground/90",
         extreme:
-          "border-extreme-border-color bg-extreme-foreground text-extreme hover:bg-extreme/90",
+          "border-extreme-border-color bg-extreme text-muted",
         outline:
           "border-outline-border-color bg-background text-secondary-foreground hover:bg-secondary/70",
         success:
